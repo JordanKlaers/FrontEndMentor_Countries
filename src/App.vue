@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Container from './components/container'
+import Container from './components/card'
 import { mapGetters } from 'vuex'
 import store from './main.js'
 export default {
