@@ -1,0 +1,132 @@
+@mixin util($className, $property, $value, $shouldBeImportant) {
+	@if ($shouldBeImportant) {
+		.#{$className} {
+			#{$property}: $value !important;
+		}
+	} @else {
+		.#{$className} {
+			#{$property}: $value;
+		}
+	}
+}
+
+//margin
+@include util(m-top-auto, margin-top, auto, true);
+@include util(m-top-0, margin-top, 0px, true);
+@include util(m-top-5, margin-top, 5px, true);
+@include util(m-top-10, margin-top, 10px, true);
+@include util(m-top-15, margin-top, 15px, true);
+@include util(m-top-20, margin-top, 20px, true);
+@include util(m-top-25, margin-top, 25px, true);
+@include util(m-top-30, margin-top, 30px, true);
+@include util(m-top-40, margin-top, 40px, true);
+@include util(m-top-50, margin-top, 50px, true);
+@include util(m-top-60, margin-top, 60px, true);
+
+@include util(m-btm-auto, margin-bottom, auto, true);
+@include util(m-btm-0, margin-bottom, 0px, true);
+@include util(m-btm-5, margin-bottom, 5px, true);
+@include util(m-btm-10, margin-bottom, 10px, true);
+@include util(m-btm-15, margin-bottom, 15px, true);
+@include util(m-btm-20, margin-bottom, 20px, true);
+@include util(m-btm-25, margin-bottom, 25px, true);
+@include util(m-btm-30, margin-bottom, 30px, true);
+@include util(m-btm-40, margin-bottom, 40px, true);
+@include util(m-btm-50, margin-bottom, 50px, true);
+@include util(m-btm-60, margin-bottom, 60px, true);
+
+@include util(m-lft-auto, margin-left, auto, true);
+@include util(m-lft-0, margin-left, 0px, true);
+@include util(m-lft-5, margin-left, 5px, true);
+@include util(m-lft-10, margin-left, 10px, true);
+@include util(m-lft-15, margin-left, 15px, true);
+@include util(m-lft-20, margin-left, 20px, true);
+@include util(m-lft-25, margin-left, 25px, true);
+@include util(m-lft-30, margin-left, 30px, true);
+@include util(m-lft-40, margin-left, 40px, true);
+@include util(m-lft-50, margin-left, 50px, true);
+@include util(m-lft-60, margin-left, 60px, true);
+
+@include util(m-rgt-auto, margin-right, auto, true);
+@include util(m-rgt-0, margin-right, 0px, true);
+@include util(m-rgt-5, margin-right, 5px, true);
+@include util(m-rgt-10, margin-right, 10px, true);
+@include util(m-rgt-15, margin-right, 15px, true);
+@include util(m-rgt-20, margin-right, 20px, true);
+@include util(m-rgt-25, margin-right, 25px, true);
+@include util(m-rgt-30, margin-right, 30px, true);
+@include util(m-rgt-40, margin-right, 40px, true);
+@include util(m-rgt-50, margin-right, 50px, true);
+@include util(m-rgt-60, margin-right, 60px, true);
+
+//margin all
+@include util(m-auto, margin, auto, false);
+@include util(m-0, margin, 0px, false);
+@include util(m-5, margin, 5px, false);
+@include util(m-10, margin, 10px, false);
+@include util(m-15, margin, 15px, false);
+@include util(m-20, margin, 20px, false);
+@include util(m-25, margin, 25px, false);
+@include util(m-30, margin, 30px, false);
+@include util(m-40, margin, 40px, false);
+@include util(m-50, margin, 50px, false);
+@include util(m-60, margin, 60px, false);
+
+
+//padding
+@include util(p-top-0, padding-top, 0px, true);
+@include util(p-top-5, padding-top, 5px, true);
+@include util(p-top-10, padding-top, 10px, true);
+@include util(p-top-15, padding-top, 15px, true);
+@include util(p-top-20, padding-top, 20px, true);
+@include util(p-top-25, padding-top, 25px, true);
+@include util(p-top-30, padding-top, 30px, true);
+
+@include util(p-btm-0, padding-bottom, 0px, true);
+@include util(p-btm-5, padding-bottom, 5px, true);
+@include util(p-btm-10, padding-bottom, 10px, true);
+@include util(p-btm-15, padding-bottom, 15px, true);
+@include util(p-btm-20, padding-bottom, 20px, true);
+@include util(p-btm-25, padding-bottom, 25px, true);
+@include util(p-btm-30, padding-bottom, 30px, true);
+
+@include util(p-lft-0, padding-left, 0px, true);
+@include util(p-lft-5, padding-left, 5px, true);
+@include util(p-lft-10, padding-left, 10px, true);
+@include util(p-lft-15, padding-left, 15px, true);
+@include util(p-lft-20, padding-left, 20px, true);
+@include util(p-lft-25, padding-left, 25px, true);
+@include util(p-lft-30, padding-left, 30px, true);
+
+@include util(p-rgt-0, padding-right, 0px, true);
+@include util(p-rgt-5, padding-right, 5px, true);
+@include util(p-rgt-10, padding-right, 10px, true);
+@include util(p-rgt-15, padding-right, 15px, true);
+@include util(p-rgt-20, padding-right, 20px, true);
+@include util(p-rgt-25, padding-right, 25px, true);
+@include util(p-rgt-30, padding-right, 30px, true);
+
+
+//padding all
+@include util(p-0, padding, 0px, false);
+@include util(p-5, padding, 5px, false);
+@include util(p-10, padding, 10px, false);
+@include util(p-15, padding, 15px, false);
+@include util(p-20, padding, 20px, false);
+@include util(p-25, padding, 25px, false);
+@include util(p-30, padding, 30px, false);
+
+
+//font-weights
+.ft-normal {
+	font-weight: 300;
+}
+.ft-bold {
+	font-weight: 600;
+}
+.ft-xtr-bold {
+	font-weight: 800;
+}
+
+@include util(ft-sz-18, font-size, 18px, true);
+@include util(ft-sz-20, font-size, 20px, true);
