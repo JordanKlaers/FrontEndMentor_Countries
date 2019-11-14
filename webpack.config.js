@@ -20,7 +20,9 @@ module.exports = {
 		alias: {
 			'src': resolve('src'),
 			'_scss_': resolve('./src/assets/scss'),
-			'_images_': resolve('./src/assets/image/')
+			'_icomoon_': resolve('./src/assets/icomoon'),
+			'_images_': resolve('./src/assets/image/'),
+			'_store_': resolve('./src/store')
 		}
 	},
 	// optimization: {
@@ -59,6 +61,10 @@ module.exports = {
 			{
 				test: /\.(jpe?g|png|gif|svg)$/i, 
 				loader: "file-loader"
+			},
+			{
+				test: /\.(jpg|jpeg|png|woff|woff2|eot|ttf|svg)$/,
+				loader: 'url-loader?limit=100000'
 			}
 		]
 	},

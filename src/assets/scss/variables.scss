@@ -1,15 +1,18 @@
 :root {
 	--section-container-width: 768px;
-	--background-color: #009CDE;
+	--background-color: white;
 	--app-height: 100%;
 }
-$tempVariable1: gray;
-$background-image: url('~_images_/hackerman.jpg');
+$DarkModeElements: hsl(209, 23%, 22%);
+$DarkModeBackground: hsl(207, 26%, 17%);
+$LightModeText: hsl(200, 15%, 8%);
+$LightModeInput: hsl(0, 0%, 52%);
+$LightModeBackground: hsl(0, 0%, 98%);
 
-.hackerman-background-image {
-	background-image: $background-image;
-}
+$DarkModeTextLightModeElements: hsl(0, 0%, 100%);
+//these colors are linked
+$DarkModeText: $DarkModeTextLightModeElements;
+$LightModeElements: $DarkModeTextLightModeElements;
 
-.background-gray {
-	background-color: $tempVariable1;
-}
+$text-large: 20px;
+$text-regular: 16px;
