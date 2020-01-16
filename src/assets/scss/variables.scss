@@ -2,7 +2,30 @@
 	--section-container-width: 768px;
 	--background-color: white;
 	--app-height: 100%;
+	
+	--DarkModeElements: hsl(209, 23%, 22%);
+	--DarkModeBackground: hsl(207, 26%, 17%);
+	--DarkModeText: hsl(0, 0%, 100%);
+
+	--LightModeText: hsl(200, 15%, 8%);
+	--LightModeInput: hsl(0, 0%, 52%);
+	--LightModeBackground: hsl(0, 0%, 98%);
+	--LightModeElements: hsl(0, 0%, 100%);
+
+	--text-large: 20px;
+	--text-regular: 16px;
+
+
+	//the page starts on light mode
+	--active-element-color: var(--LightModeElements);
+	--active-text-color: var(--LightModeText);
+	--active-bg-color: var(--LightModeBackground);
 }
+
+// $activeElementColor: var()
+
+
+
 $DarkModeElements: hsl(209, 23%, 22%);
 $DarkModeBackground: hsl(207, 26%, 17%);
 $LightModeText: hsl(200, 15%, 8%);

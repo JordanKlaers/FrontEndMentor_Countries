@@ -19,8 +19,8 @@
 	$x-shift: 0px,
 	$y-shift: 4px,
 	$color: rgba(0,0,0,0.1),
-	$color-hover: rgba(0,0,0,0.3)
+	$transition: 1s
 	) {
-	transition: 1s;
+	transition: $transition;
 	box-shadow: $color $x-shift $y-shift $fade $size;
 }

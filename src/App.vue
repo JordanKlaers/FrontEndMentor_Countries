@@ -1,8 +1,13 @@
 <template>
 	<div id="app" class="m">
 		<banner></banner>
-		<search-filter></search-filter>
-		<card :placeData="firstCountry"></card>
+		<search-filter :searchValue.sync="searchValue"></search-filter>
+		<region-filter :regions="regions" @updateRegionFilter="updateSelectedRegionFilters"></region-filter>
+		<card
+			:placeData="country"
+			v-for="(country, index) in filteredCountries"
+			:key="index">
+		</card>
 	</div>
 </template>
 
@@ -10,37 +15,39 @@
 import Card from './components/Card';
 import Banner from './components/Banner';
 import SearchFilter from './components/SearchFilter';
+import RegionFilter from './components/RegionFilter';
 import { mapGetters } from 'vuex';
 import { getCountriesAll } from '_store_/actions.js';
+import MainFilter from '_mixins_/MainFilter';
 export default {
 	name: 'app',
 	components: {
 		Banner,
 		Card,
-		'search-filter': SearchFilter
+		'search-filter': SearchFilter,
+		'region-filter': RegionFilter
 	},
 	data() {
 		return {
-			count: 1
+			regionsFilterList: [],
+			searchValue: ''
 		}
 	},
 	mounted() {
 		this.$store.dispatch('getCountriesAll');
 	},
-	computed: {
-		...mapGetters(['countriesAll']),
-		firstCountry() {
-			return this.countriesAll && this.countriesAll[0] || {};
-		}
-	},
+	mixins: [MainFilter],
 	methods: {
+		toggleMode() {
+			
+		}
 	}
 };
 </script>
 <style lang='scss' type='text/css'>
 @import '~_scss_/app';
 #app {
-	background-color: $LightModeBackground;
+	background-color: var(--active-bg-color);
 }
 </style>
 <style type='text/css'>

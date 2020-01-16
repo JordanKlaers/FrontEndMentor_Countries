@@ -54,11 +54,12 @@ export default {
 <style lang='scss' type="text/scss">
 @import '~_scss_/variables';
 .card {
-	background-color: white;
+	background-color: var(--active-element-color);
 	border-radius: 10px;
 	overflow: hidden;
 	box-shadow: rgba(0,0,0,0.1) 0px 4px 10px 8px;
 	transition: 1s;
+	color: var(--active-text-color);
 	&:hover {
 		box-shadow: rgba(0,0,0,0.3) 0px 4px 10px 8px;
 	}

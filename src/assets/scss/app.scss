@@ -10,9 +10,9 @@ body, html {
 * {
 	box-sizing: border-box;
 	font-family: 'Nunito Sans', sans-serif;
+	transition: 1s;
 }
 
 #app {
-	height: 100%;
 	position: relative;
 }

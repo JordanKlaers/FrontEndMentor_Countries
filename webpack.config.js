@@ -19,6 +19,7 @@ module.exports = {
 		extensions: ['.js', '.vue', '.json', '.scss'],
 		alias: {
 			'src': resolve('src'),
+			'_mixins_': resolve('./src/mixins'),
 			'_scss_': resolve('./src/assets/scss'),
 			'_icomoon_': resolve('./src/assets/icomoon'),
 			'_images_': resolve('./src/assets/image/'),

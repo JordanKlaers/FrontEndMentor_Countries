@@ -1,5 +1,5 @@
 <template>
-	<div id="searchFilter" class="p-lft-30 p-rgt-30 m-top-30">
+	<div id="search-filter" class="p-lft-30 p-rgt-30 m-top-30">
 		<i class="icon icon-search p-10 p-lft-30" @click='setCursorInput'>
 			<input
 				ref='input'
@@ -7,7 +7,8 @@
 				type="text"
 				id="search"
 				name="search"
-				v-model="searchValue"
+				:value="searchValue"
+				@input="event => $emit('update:searchValue', event.target.value)"
 				placeholder="Search for a Country..."
 				size="30">
 		</i>
@@ -19,28 +20,18 @@ export default {
 	name: 'searchFilter',
 	components: {
 	},
-	props: {},
-	data() {
-		return {
-			searchValue: ''
-		}
-	},
+	props: [ 'searchValue' ],
 	methods: {
 		setCursorInput() {
 			this.$refs['input'].focus();
 			this.$refs['input'].select();
-		}
-	},
-	watch: {
-		searchValue(val) {
-			console.log('value', val);
 		}
 	}
 };
 </script>
 <style lang='scss' type="text/scss">
 @import '~_scss_/_mixins';
-#searchFilter {
+#search-filter {
 	i {
 		width: 100%;
 		display: flex;
@@ -55,6 +46,9 @@ export default {
 		text-overflow: ellipsis;
 		&:focus{
 			outline: none;
+		}
+		&::placeholder {
+			color: #999;
 		}
 	}
 }
