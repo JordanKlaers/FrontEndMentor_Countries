@@ -10,9 +10,10 @@ body, html {
 * {
 	box-sizing: border-box;
 	font-family: 'Nunito Sans', sans-serif;
-	transition: 1s;
 }
 
 #app {
 	position: relative;
+	transition: 1s;
+	background-color: var(--active-bg-color);
 }

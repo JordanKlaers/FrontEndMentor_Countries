@@ -17,8 +17,6 @@
 </template>
 
 <script>
-// @select="emitUpdatedSelection"
-// @remove="emitUpdatedSelection"
 import Multiselect from 'vue-multiselect'
 
 export default {
@@ -40,7 +38,6 @@ export default {
   },
   methods: {
 	  emitUpdatedSelection() {
-		  console.log('this.value', this.value);
 		  this.$emit('updateRegionFilter', this.value);
 	  }
   }
@@ -55,6 +52,9 @@ export default {
 	width: 230px;
 	@include box-shadow-with-hover(('color-hover': rgba(0,0,0,0.2))...);
 	&__tags {
+		transition: 1s;
+		background-color: var(--active-element-color);
+		border-color: transparent;
 		border-radius: 7px;
 	}
 	&__tag {
@@ -82,15 +82,20 @@ export default {
 		margin-bottom: 8px;
 		margin-left: 10px;
 		padding: 0;
+		background-color: var(--active-element-color);
+		color: var(--active-text-color);
 		&::placeholder {
 			color: #999;
 			font-size: 14px;
 		}
 	}
 	&__placeholder {
+		transition: 1s;
+		color: var(--active-text-color);
 		margin-left: 10px;
 	}
 	&__content-wrapper {
+		border-color: var(--active-element-color);
 		border-bottom-right-radius: 7px;
 		border-bottom-left-radius: 7px;
 	}
@@ -98,14 +103,17 @@ export default {
 		background-color: initial;
 	}
 	&__option {
+		color: var(--active-text-color);
+		background: var(--active-bg-color);
+		padding: 8px;
+		min-height: 32px;
 		span:first-of-type {
-			color: $LightModeText;
 			font-size: $text-regular;
 		}
 		&--highlight {
-			background: $DarkModeElements;
+			background: var(--inactive-bg-color);
 			span:first-of-type {
-				color: white;
+				color: var(--inactive-text-color);
 			}
 		}
 		&--highlight#{&}--selected {

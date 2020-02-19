@@ -37,10 +37,15 @@ export default {
 				styles.setProperty('--active-element-color', this['--DarkModeElements']);
 				styles.setProperty('--active-text-color', this['--DarkModeText']);
 				styles.setProperty('--active-bg-color', this['--DarkModeBackground']);
+				styles.setProperty('--inactive-bg-color', this['--LightModeBackground']);
+				styles.setProperty('--inactive-text-color', this['--LightModeText']);
 			} else {
 				styles.setProperty('--active-element-color', this['--LightModeElements']);
 				styles.setProperty('--active-text-color', this['--LightModeText']);
 				styles.setProperty('--active-bg-color', this['--LightModeBackground']);
+				styles.setProperty('--inactive-bg-color', this['--DarkModeBackground']);
+				styles.setProperty('--inactive-text-color', this['--DarkModeText']);
+				
 			}
 			this.isLight = !this.isLight;
 		}
@@ -53,6 +58,7 @@ export default {
 #banner {
 	@include box-shadow((color: rgba(0,0,0,0.05))...);
 	display: flex;
+	transition: 1s;
 	color: var(--active-text-color);
 	background-color: var(--active-element-color);
 	span {

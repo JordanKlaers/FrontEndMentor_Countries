@@ -1,5 +1,5 @@
 <template>
-	<div id="app" class="m">
+	<div id="app">
 		<banner></banner>
 		<search-filter :searchValue.sync="searchValue"></search-filter>
 		<region-filter :regions="regions" @updateRegionFilter="updateSelectedRegionFilters"></region-filter>
@@ -19,6 +19,7 @@ import RegionFilter from './components/RegionFilter';
 import { mapGetters } from 'vuex';
 import { getCountriesAll } from '_store_/actions.js';
 import MainFilter from '_mixins_/MainFilter';
+import 'babel-polyfill';
 export default {
 	name: 'app',
 	components: {
@@ -36,19 +37,11 @@ export default {
 	mounted() {
 		this.$store.dispatch('getCountriesAll');
 	},
-	mixins: [MainFilter],
-	methods: {
-		toggleMode() {
-			
-		}
-	}
+	mixins: [MainFilter]
 };
 </script>
 <style lang='scss' type='text/css'>
 @import '~_scss_/app';
-#app {
-	background-color: var(--active-bg-color);
-}
 </style>
 <style type='text/css'>
 @import '~_icomoon_/style.css';

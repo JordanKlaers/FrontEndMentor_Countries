@@ -113,8 +113,13 @@ export default {
 					}
 				}
 			}
-			//if there is a selected region to filter by, check if the country matches a region in the list and remove if not
+			//after addressing the text filter, 
+			//then if  there is a region selected, remove if it doesnt match
 			if (regionsFilterList.length && !regionsFilterList.includes(country.region)) shouldIncludeCountry = false;
+
+			//if there is no text entered, then add the country if there is a match (the counter to the condition above)
+			if (!searchValue && regionsFilterList.length && regionsFilterList.includes(country.region)) shouldIncludeCountry = true;
+
 			//if there is no search text or selected regions, just return the country
 			if (!searchValue && !regionsFilterList.length) shouldIncludeCountry = true;
 			return {

@@ -36,7 +36,9 @@ export default {
 		width: 100%;
 		display: flex;
 		border-radius: 7px;
-		background-color: white;
+		transition: 1s;
+		background-color: var(--active-element-color);
+		color: var(--active-text-color);
 		@include box-shadow-with-hover(('color-hover': rgba(0,0,0,0.2))...);
 	}
 	input {
@@ -44,11 +46,16 @@ export default {
 		flex: 1;
 		border: none;
 		text-overflow: ellipsis;
+		transition: 1s;
+		color: var(--active-text-color);
+		background-color: var(--active-element-color);
 		&:focus{
 			outline: none;
 		}
 		&::placeholder {
+			transition: 1s;
 			color: #999;
+			color: var(--active-text-color);
 		}
 	}
 }
