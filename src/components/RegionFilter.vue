@@ -53,18 +53,38 @@ export default {
 	@include box-shadow-with-hover(('color-hover': rgba(0,0,0,0.2))...);
 	&__tags {
 		transition: 1s;
-		background-color: var(--active-element-color);
+		background: var(--active-element-color);
 		border-color: transparent;
 		border-radius: 7px;
+		.multiselect__tag {
+			//fallback for ie
+			background: hsl(209, 23%, 22%);
+			//
+			background: var(--inactive-element-color);
+			span:first-of-type {
+				//fallback for IE
+				color: hsl(0, 0%, 100%);
+				//
+				color: var(--inactive-text-color);
+			}
+			&-icon::after {
+				color: var(--inactive-text-color);
+			}
+			&-icon:hover {
+				//fallback for ie
+				background: hsl(209, 23%, 22%);
+				//
+			}
+		}
 	}
 	&__tag {
 		overflow: visible;
-		background-color: $DarkModeElements;
+		background: var(--active-element-color);
 	}
 	&__tag-icon {
 		transition: 0.5s;
 		&:hover {
-			background-color: initial;
+			background: initial;
 			@include box-shadow((
 				'color': rgba(0, 0, 0, 0.5),
 				'x-shift': 0px,
@@ -103,6 +123,10 @@ export default {
 		background-color: initial;
 	}
 	&__option {
+		//just these two values are a fall back for ie as ther would otherwise be green (the default of the plugin styles)
+		color: hsl(200, 15%, 8%);
+		background: hsl(0, 0%, 98%);
+		//
 		color: var(--active-text-color);
 		background: var(--active-bg-color);
 		padding: 8px;
@@ -111,13 +135,19 @@ export default {
 			font-size: $text-regular;
 		}
 		&--highlight {
+			//fallback for IE
+			background: hsl(207, 26%, 17%);
+			//
 			background: var(--inactive-bg-color);
 			span:first-of-type {
+				//fallback for IE
+				color: hsl(0, 0%, 100%);
+				//
 				color: var(--inactive-text-color);
 			}
 		}
 		&--highlight#{&}--selected {
-			background: #939393;
+			background: hsl(0, 100%, 78%);
 		}
 	}
 }

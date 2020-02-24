@@ -15,5 +15,6 @@ body, html {
 #app {
 	position: relative;
 	transition: 1s;
+	// background-color: attr(data-active-bg-color);
 	background-color: var(--active-bg-color);
 }

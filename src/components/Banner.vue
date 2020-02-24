@@ -24,6 +24,7 @@ export default {
 			'--DarkModeElements': rootVariables.getPropertyValue('--DarkModeElements'),
 			'--DarkModeBackground': rootVariables.getPropertyValue('--DarkModeBackground'),
 			'--DarkModeText': rootVariables.getPropertyValue('--DarkModeText'),
+			'--DarkModeElements': rootVariables.getPropertyValue('--DarkModeElements'),
 			'--LightModeText': rootVariables.getPropertyValue('--LightModeText'),
 			'--LightModeInput': rootVariables.getPropertyValue('--LightModeInput'),
 			'--LightModeBackground': rootVariables.getPropertyValue('--LightModeBackground'),
@@ -33,21 +34,22 @@ export default {
 	methods: {
 		toggleMode() {
 			let styles = document.body.style;
+			this.isLight = !this.isLight;
 			if (this.isLight) {
-				styles.setProperty('--active-element-color', this['--DarkModeElements']);
-				styles.setProperty('--active-text-color', this['--DarkModeText']);
-				styles.setProperty('--active-bg-color', this['--DarkModeBackground']);
-				styles.setProperty('--inactive-bg-color', this['--LightModeBackground']);
-				styles.setProperty('--inactive-text-color', this['--LightModeText']);
-			} else {
 				styles.setProperty('--active-element-color', this['--LightModeElements']);
 				styles.setProperty('--active-text-color', this['--LightModeText']);
 				styles.setProperty('--active-bg-color', this['--LightModeBackground']);
 				styles.setProperty('--inactive-bg-color', this['--DarkModeBackground']);
 				styles.setProperty('--inactive-text-color', this['--DarkModeText']);
-				
+				styles.setProperty('--inactive-element-color', this['--DarkModeElements']);
+			} else {
+				styles.setProperty('--active-element-color', this['--DarkModeElements']);
+				styles.setProperty('--active-text-color', this['--DarkModeText']);
+				styles.setProperty('--active-bg-color', this['--DarkModeBackground']);
+				styles.setProperty('--inactive-bg-color', this['--LightModeBackground']);
+				styles.setProperty('--inactive-text-color', this['--LightModeText']);
+				styles.setProperty('--inactive-element-color', this['--LightModeElements']);
 			}
-			this.isLight = !this.isLight;
 		}
 	},
 	watch: {}

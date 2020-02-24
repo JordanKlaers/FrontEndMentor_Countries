@@ -1,13 +1,14 @@
 <template>
-	<div id="app">
+	<div id="app" data-active-bg-color="hsl(0, 0%, 98%)">
 		<banner></banner>
 		<search-filter :searchValue.sync="searchValue"></search-filter>
 		<region-filter :regions="regions" @updateRegionFilter="updateSelectedRegionFilters"></region-filter>
-		<card
+		<card :placeData="filteredCountries[0]"></card>
+		<!-- <card
 			:placeData="country"
 			v-for="(country, index) in filteredCountries"
 			:key="index">
-		</card>
+		</card> -->
 	</div>
 </template>
 

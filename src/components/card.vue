@@ -50,17 +50,18 @@ export default {
 					}
 				});
 			}
-			this.flag.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-			this.flag.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
-			this.flag.setAttribute("version", "1.1");
-			this.flag.setAttribute("width", "100%");
-			this.flag.setAttribute("height", "100%");
-			this.flag.setAttribute("viewBox", "0 0 100 100");
-			this.flag.setAttribute("preserveAspectRatio", "none meet");
-			this.$refs['flag-container'] && this.$refs['flag-container'].appendChild(this.flag);
+			if (this.isInternetExplorer) {
+				this.flag = null;
+				this.$refs['flag-container'].style['background-image'] = `url(${this.flagURL})`;
+			} else {
+				this.$refs['flag-container'] && this.$refs['flag-container'].appendChild(this.flag);
+			}
 		}
 	},
 	computed: {
+		flagURL() {
+			return this.placeData && this.placeData.flag || '';
+		},
 		cardFacts() {
 			let data = this.placeData || {};
 			return [
@@ -79,13 +80,11 @@ export default {
 			]
 		}
 	},
-	methods: {
-	},
 	watch: {
 		placeData: {
 			immediate: true,
 			handler(data) {
-				this.flag.src = data.flag;
+				if (data.flag) this.flag.src = data.flag;
 			}
 		}
 	}
@@ -109,10 +108,22 @@ export default {
 		@include aspect-ratio(3,2);
 	}
 	.flag-container {
-		// position: relative;
-		@keyframes bounce {
-			0% {
-				transform: translateY()
+		background-position-x: center;
+		background-position-Y: center;
+		background-size: contain;
+		@mixin bounce($x, $name) {
+			@keyframes #{$name} {
+				0% {
+					transform: translateX($x) translateY(-50%)
+				}
+				20% {
+					transition-timing-function: ease-in-out;
+					transform: translateX($x) translateY(-50%) translateY(-20px);
+				}
+				40% {
+					transition-timing-function: ease-in-out;
+					transform: translateX($x) translateY(-50%)
+				}
 			}
 		}
 		div {
@@ -122,16 +133,22 @@ export default {
 			background-color: var(--inactive-bg-color);
 			border-radius: 50%;
 			&:nth-of-type(1) {
+				@include bounce(-40px, bounceLeft);
+				animation: bounceLeft 5s 0s infinite;
 				top: 50%;
 				left: 50%;
 				transform: translateX(-40px) translateY(-50%);
 			}
 			&:nth-of-type(2) {
+				@include bounce(-10px, bounceMiddle);
+				animation: bounceMiddle 5s 1.6s infinite;
 				top: 50%;
 				left: 50%;
 				transform: translateX(-10px) translateY(-50%);
 			}
 			&:nth-of-type(3) {
+				@include bounce(20px, bouceRight);
+				animation: bouceRight 5s 3.2s infinite;
 				top: 50%;
 				left: 50%;
 				transform: translateX(20px) translateY(-50%);

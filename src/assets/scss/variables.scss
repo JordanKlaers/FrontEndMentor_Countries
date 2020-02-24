@@ -6,14 +6,14 @@
 	--DarkModeElements: hsl(209, 23%, 22%);
 	--DarkModeBackground: hsl(207, 26%, 17%);
 	--DarkModeText: hsl(0, 0%, 100%);
-	--DarkModeBoxShadow: rgba(0,0,0,0,2);
+	--DarkModeBoxShadow: rgba(0,0,0,0.2);
 
 
 	--LightModeText: hsl(200, 15%, 8%);
 	--LightModeInput: hsl(0, 0%, 52%);
 	--LightModeBackground: hsl(0, 0%, 98%);
 	--LightModeElements: hsl(0, 0%, 100%);
-	--LightModeBoxShadow: rgba(0,0,0,0,2);
+	--LightModeBoxShadow: rgba(0,0,0,0.2);
 
 
 	--text-large: 20px;
@@ -24,10 +24,12 @@
 	--active-element-color: var(--LightModeElements);
 	--active-text-color: var(--LightModeText);
 	--active-bg-color: var(--LightModeBackground);
-	--active-box-shadow-color: rgba(0,0,0,0,2);
-	
+	--active-box-shadow-color: rgba(0,0,0,0.2);
+	--active-element-color: var(--LightModeElements);
+
 	--inactive-text-color: var(--DarkModeText);
 	--inactive-bg-color: var(--DarkModeBackground);
+	--inactive-element-color: var(--DarkModeElements);
 }
 
 // $activeElementColor: var()
