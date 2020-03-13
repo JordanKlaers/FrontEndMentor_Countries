@@ -1,4 +1,5 @@
-:root {
+body {
+	// --active-bg-color: red;
 	--section-container-width: 768px;
 	--background-color: white;
 	--app-height: 100%;
@@ -19,17 +20,18 @@
 	--text-large: 20px;
 	--text-regular: 16px;
 
+	#app {
+		//the page starts on light mode
+		--active-element-color: hsl(0, 0%, 100%);//var(--LightModeElements);
+		--active-text-color: hsl(200, 15%, 8%);//var(--LightModeText);
+		--active-bg-color: hsl(0, 0%, 98%);//var(--LightModeBackground);
+		--active-box-shadow-color: rgba(0,0,0,0.2);
+		--active-element-color: hsl(0, 0%, 100%);//var(--LightModeElements);
 
-	//the page starts on light mode
-	--active-element-color: var(--LightModeElements);
-	--active-text-color: var(--LightModeText);
-	--active-bg-color: var(--LightModeBackground);
-	--active-box-shadow-color: rgba(0,0,0,0.2);
-	--active-element-color: var(--LightModeElements);
-
-	--inactive-text-color: var(--DarkModeText);
-	--inactive-bg-color: var(--DarkModeBackground);
-	--inactive-element-color: var(--DarkModeElements);
+		--inactive-text-color: hsl(0, 0%, 100%);//var(--DarkModeText);
+		--inactive-bg-color: hsl(207, 26%, 17%);//var(--DarkModeBackground);
+		--inactive-element-color: hsl(209, 23%, 22%);//var(--DarkModeElements);
+	}
 }
 
 // $activeElementColor: var()

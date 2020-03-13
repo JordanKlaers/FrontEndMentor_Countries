@@ -7,7 +7,9 @@ export async function getCountriesAll({state, commit, rootState}, data) {
 			method: 'get',
 			url: 'http://restcountries.eu/rest/v2/all'
 		});
-		if (response && response.data) commit('UPDATE_COUNTRIES_ALL', response.data);
+		if (response && response.data) {
+			commit('UPDATE_COUNTRIES_ALL', response.data);
+		}
 	} catch (err) {
 		console.log('err?', err);
 	}

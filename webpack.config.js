@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackInjector = require('html-webpack-injector');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const webpack = require('webpack');
 
@@ -9,7 +10,8 @@ function resolve (dir) {
 
 module.exports = {
 	entry: {
-		app: './src/main.js',
+		ieCSSVariables_head: './src/ie11CustomProperties.js',
+		app: './src/main.js'
 	},
 	devtool: 'inline-source-map',
 	devServer: {
@@ -78,14 +80,16 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: 'Output Management',
-			template: 'src/index.html'
+			template: 'src/index.html',
+			chunks: ['ieCSSVariables_head', 'app']
 		}),
+		new HtmlWebpackInjector(),
 		new HtmlWebpackHarddiskPlugin(),
 		new webpack.optimize.ModuleConcatenationPlugin()
 	],
 	output: {
 		filename: '[name].bundle.js',
 		path: path.resolve(__dirname, 'dist/'),
-		publicPath: '/'
+		publicPath: 'http://localhost:9000/'
 	}
 };

@@ -7,7 +7,6 @@
 				<div></div>
 			</div>
 		</div>
-		<!-- <img class="flag" :src="placeData.flag"/> -->
 		<div class="place ft-xtr-bold m-30">
 			{{placeData.name}}
 		</div>
@@ -21,41 +20,12 @@
 </template>
 
 <script>
+import Axios from 'axios';
 export default {
 	name: 'card',
-	components: {
-	},
 	props: {
 		placeData: {
 			default: () => { return {}; }
-		}
-	},
-	data() {
-		return {
-			flag: new Image()
-		}
-	},
-	mounted() {
-		this.flag.onload = () => {
-			const flagContainer = this.$refs['flag-container'];
-			if (flagContainer) {
-				let elements = [];
-				[...flagContainer.childNodes].forEach(node => {
-					elements.push(node);
-					
-				});
-				elements.forEach(el => {
-					if (el.nodeType == Node.ELEMENT_NODE) {
-						// flagContainer.removeChild(el);
-					}
-				});
-			}
-			if (this.isInternetExplorer) {
-				this.flag = null;
-				this.$refs['flag-container'].style['background-image'] = `url(${this.flagURL})`;
-			} else {
-				this.$refs['flag-container'] && this.$refs['flag-container'].appendChild(this.flag);
-			}
 		}
 	},
 	computed: {
@@ -80,11 +50,37 @@ export default {
 			]
 		}
 	},
+	methods: {
+		async getFlagImage(url) {
+			try {
+				const response = await Axios({
+					method: 'get',
+					url,
+					dataType: "image/svg"
+				});
+				if (response && response.data) {
+					return response.data || '';
+				}
+			} catch (err) {
+				console.log('err?', err);
+			}
+		}
+	},
 	watch: {
 		placeData: {
 			immediate: true,
 			handler(data) {
-				if (data.flag) this.flag.src = data.flag;
+				if (data.flag) {
+					Promise.resolve(this.getFlagImage(data.flag)).then(svgString => {
+						this.$refs['flag-container'].innerHTML = svgString;
+						const svg = this.$refs['flag-container'].querySelector('svg');
+						let x = svg.getAttribute("width");
+						let y = svg.getAttribute("height");
+						svg.setAttribute('viewBox', `0 0 ${x} ${y}`)
+						svg.removeAttribute('height');
+						svg.removeAttribute('width');
+					});
+				}
 			}
 		}
 	}

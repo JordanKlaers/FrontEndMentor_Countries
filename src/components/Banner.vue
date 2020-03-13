@@ -3,37 +3,45 @@
 		<span class="ft-xtr-bold ft-sz-20">Where in the world?</span>
 		<span
 			class="ft-normal m-lft-auto ft-sz-18 dark-mode"
-			@click="toggleMode">
+			@click="clickHandler">
 			<i class='icon-moon-stroke ft-sz-16 p-rgt-15'></i>Dark Mode
 		</span>
 	</div>
 </template>
 
 <script>
+import { debounce } from 'lodash-es';
 export default {
 	name: 'banner',
-	components: {
+	computed: {
+		hasCSSVariables() {
+			return this['--DarkModeElements'] || this['--DarkModeBackground'] || this['--DarkModeText'] || this['--DarkModeElements'] || this['--LightModeText'] || this['--LightModeInput'] || this['--LightModeBackground'] || this['--LightModeElements'];
+		}
 	},
 	props: {},
 	data() {
-		let rootVariables = getComputedStyle(document.body);
-		console.log('HERERERE', document.body.style);
+		
 		return {
-			rootVariables,
+			clickHandler: debounce(this.toggleMode, 300, { 'leading': true, 'trailing': false }),
 			isLight: true,
-			'--DarkModeElements': rootVariables.getPropertyValue('--DarkModeElements'),
-			'--DarkModeBackground': rootVariables.getPropertyValue('--DarkModeBackground'),
-			'--DarkModeText': rootVariables.getPropertyValue('--DarkModeText'),
-			'--DarkModeElements': rootVariables.getPropertyValue('--DarkModeElements'),
-			'--LightModeText': rootVariables.getPropertyValue('--LightModeText'),
-			'--LightModeInput': rootVariables.getPropertyValue('--LightModeInput'),
-			'--LightModeBackground': rootVariables.getPropertyValue('--LightModeBackground'),
-			'--LightModeElements': rootVariables.getPropertyValue('--LightModeElements')
+			'--DarkModeElements': '',
+			'--DarkModeBackground': '',
+			'--DarkModeText': '',
+			'--DarkModeElements': '',
+			'--LightModeText': '',
+			'--LightModeInput': '',
+			'--LightModeBackground': '',
+			'--LightModeElements': ''
 		}
+	},
+	mounted() {
+		
 	},
 	methods: {
 		toggleMode() {
-			let styles = document.body.style;
+			if (!this.hasCSSVariables) this.retrieveCSSVariables();
+
+			let styles = document.getElementById('app').style;
 			this.isLight = !this.isLight;
 			if (this.isLight) {
 				styles.setProperty('--active-element-color', this['--LightModeElements']);
@@ -50,6 +58,17 @@ export default {
 				styles.setProperty('--inactive-text-color', this['--LightModeText']);
 				styles.setProperty('--inactive-element-color', this['--LightModeElements']);
 			}
+		},
+		retrieveCSSVariables() {
+			let rootVariables = getComputedStyle(document.body);
+			this['--DarkModeElements'] = rootVariables.getPropertyValue('--DarkModeElements'),
+			this['--DarkModeBackground'] = rootVariables.getPropertyValue('--DarkModeBackground'),
+			this['--DarkModeText'] = rootVariables.getPropertyValue('--DarkModeText'),
+			this['--DarkModeElements'] = rootVariables.getPropertyValue('--DarkModeElements'),
+			this['--LightModeText'] = rootVariables.getPropertyValue('--LightModeText'),
+			this['--LightModeInput'] = rootVariables.getPropertyValue('--LightModeInput'),
+			this['--LightModeBackground'] = rootVariables.getPropertyValue('--LightModeBackground'),
+			this['--LightModeElements'] = rootVariables.getPropertyValue('--LightModeElements')
 		}
 	},
 	watch: {}
