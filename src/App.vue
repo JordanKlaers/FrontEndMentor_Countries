@@ -3,12 +3,14 @@
 		<banner></banner>
 		<search-filter :searchValue.sync="searchValue"></search-filter>
 		<region-filter :regions="regions" @updateRegionFilter="updateSelectedRegionFilters"></region-filter>
-		<card :placeData="filteredCountries[0]"></card>
-		<!-- <card
-			:placeData="country"
-			v-for="(country, index) in filteredCountries"
-			:key="index">
-		</card> -->
+		<div class="card-container ie-fallback m-30" ref='card-container'>
+			<card
+				:placeData="country"
+				v-for="(country, index) in filteredCountries"
+				:key="index">
+			</card>
+		</div>
+		
 	</div>
 </template>
 
@@ -36,15 +38,10 @@ export default {
 		}
 	},
 	mounted() {
-		// if (window.MSInputMethodContext && document.documentMode) {
-		// 	console.log('its doing it here');
-		// 	document.write('<script src="./ie11CustomProperties.js"><\x2fscript>');
-		// } 
 		this.$store.dispatch('getCountriesAll');
-		// document.addEventListener('click', () => {
-		// 	let color = getComputedStyle(document.body).getPropertyValue('--active-bg-color');
-		// 	document.body.style.setProperty('--active-bg-color', 'pink');
-		// })
+		if (this.isInternetExplorer) {
+			this.$refs['card-container'].classList.add('ie-fallback');
+		}
 	},
 	mixins: [MainFilter]
 };

@@ -11,6 +11,6 @@ export async function getCountriesAll({state, commit, rootState}, data) {
 			commit('UPDATE_COUNTRIES_ALL', response.data);
 		}
 	} catch (err) {
-		console.log('err?', err);
+		console.log('API call err', err);
 	}
 }

@@ -1,16 +1,16 @@
 <template>
-	<div class="card m-60">
+	<div class="card" ref="card">
 		<div class="aspect-ratio">
 			<div class="flag-container" ref="flag-container">
-				<div></div>
-				<div></div>
-				<div></div>
+				<div class="loading-dot"></div>
+				<div class="loading-dot"></div>
+				<div class="loading-dot"></div>
 			</div>
 		</div>
 		<div class="place ft-xtr-bold m-30">
 			{{placeData.name}}
 		</div>
-		<dl class="m-lft-30 verticle">
+		<dl class="m-lft-30 m-rgt-30 verticle">
 			<div class="row p-btm-10" v-for="(fact, index) in cardFacts" :key="index">
 				<dt class="ft-bold">{{fact.label}}: </dt>
 				<dd class="ft-normal">{{fact.value}}</dd>
@@ -51,6 +51,9 @@ export default {
 		}
 	},
 	methods: {
+		extractImage(val) {
+			return val.image;//something else?
+		},
 		async getFlagImage(url) {
 			try {
 				const response = await Axios({
@@ -76,9 +79,16 @@ export default {
 						const svg = this.$refs['flag-container'].querySelector('svg');
 						let x = svg.getAttribute("width");
 						let y = svg.getAttribute("height");
-						svg.setAttribute('viewBox', `0 0 ${x} ${y}`)
+						let viewBoxValue = svg.getAttribute("viewBox");
+						if (viewBoxValue) svg.setAttribute('viewBox', viewBoxValue);
+						else svg.setAttribute('viewBox', `0 0 ${x} ${y}`);
 						svg.removeAttribute('height');
 						svg.removeAttribute('width');
+
+						//works in chrome. Does not work in IE
+						this.$refs['card'].setAttribute('style', `--ratio: ${(y/x) * 100}%;`);
+						//does not work in chrome. Works in IE
+						this.$refs['card'].style.setProperty('--ratio', `${(y/x) * 100}%;`);
 					});
 				}
 			}
@@ -101,7 +111,9 @@ export default {
 		box-shadow: rgba(0,0,0,0.3) 0px 4px 10px 8px;
 	}
 	.aspect-ratio {
-		@include aspect-ratio(3,2);
+		//this requires the height and width css variables to be set on the element that is a parent of this class
+		//the svgs can have different sizes, vewiboxDimensions and ratios so this allows for the svgs to work in every browser and fill the space equally despite the different dimensions
+		@include svg-aspect-ratio-wrapper();
 	}
 	.flag-container {
 		background-position-x: center;
@@ -122,7 +134,7 @@ export default {
 				}
 			}
 		}
-		div {
+		div.loading-dot {
 			position: absolute;
 			width: 20px;
 			height: 20px;
@@ -167,6 +179,9 @@ dl {
 		font-size: $text-regular;
 		white-space: pre;
 		display: contents;
+	}
+	dd {
+		white-space: normal;
 	}
 	&.verticle {
 		display: flex;

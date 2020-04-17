@@ -25,14 +25,15 @@
 	box-shadow: $color $x-shift $y-shift $fade $size;
 }
 
-@mixin aspect-ratio($width, $height) {
+@mixin svg-aspect-ratio-wrapper() {
 	position: relative;
     &:before{
         display: block;
         content: " ";
         width: 100%;
 		//the padding of the psuedo element creats the space for the child element to fill, achieving the constant aspect ratio
-        padding-top: ($height / $width) * 100%;
+		padding-top: 80%;
+        padding-top: var(--ratio);
     }
 	//this mixin must wrap a single element (the element that should preserve its aspect ratio)
     > * {

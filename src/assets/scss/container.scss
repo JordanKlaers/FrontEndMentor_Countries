@@ -1,0 +1,68 @@
+.card-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	grid-gap: 30px 30px;
+	--ratio: 80%;
+	.card {
+		min-width: min-content;
+	}
+}
+
+.card-container.ie-fallback {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	.card {
+		flex-grow: 1;
+		flex-shrink: 1;
+		margin-bottom: 30px;
+		@media (min-width: 1025px) {
+			flex-basis: 21%;
+			max-width: calc(25% - 15px);
+			//in the 4 row layout if the last row has one card this style will push to the left
+			&:nth-child(4n - 3):last-of-type {
+				margin-right: auto;
+			}
+			//if the last row of four only has two elements then the first gets margin right for a spacer, and the last gets shifted over
+			&:nth-child(4n - 3):nth-last-child(2) {
+				+ .card {
+					margin-left: 20px;
+					margin-right: auto;
+				}
+			}
+			//if there are 3 elements in the last row of 4, the second card gets margin for spacer, and the last card gets the margin for spacer as well as being pushed over
+			&:nth-child(4n - 3):nth-last-child(3) {
+				~ .card {
+					margin-left: 20px;
+					&:last-child {
+						margin-right: auto;
+					}
+				}
+			}
+		}
+		@media (min-width: 768px) and (max-width: 1024px) {
+			flex-basis: 34%;
+			max-width: calc(33% - 10px);
+			//if the last row of three only has two elements then the last gets shifted over with a spacer
+			&:nth-child(3n - 2):nth-last-child(2) {
+				+ .card:last-child {
+					margin-left: 20px;
+					margin-right: auto;
+				}
+			}
+			//this just resets the position logic used when there are four cards on a row
+			&:nth-child(4n - 3):nth-last-child(3) {
+				~ .card {
+					margin-left: 0px;
+					&:last-child {
+						margin-right: 0;
+					}
+				}
+			}
+		}
+		@media (max-width: 767px) {
+			flex-basis: 100%;
+			margin-bottom: 30px;
+		}
+	}
+}
