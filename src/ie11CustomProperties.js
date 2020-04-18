@@ -1,8 +1,6 @@
 /*! ie11CustomProperties.js v3.0.6 | MIT License | https://git.io/fjXMN */
 !function () {
 	'use strict';
-	console.log("loaded the custom stuff");
-
 	// check for support
 	var testEl = document.createElement('i');
 	testEl.style.setProperty('--x', 'y');
