@@ -27,7 +27,8 @@ export default {
 					acc.push(val.country);
 				}
 				return acc;
-			}, []);
+				//only return the first 20. TODO: implement lazyloading/faster searching-filtering/ image caching
+			}, []).slice(0,19);
 		},
 		regions() {
 			//take the full list of countries and return a list of the regions, with only unique values that exist (no empty values)

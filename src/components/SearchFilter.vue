@@ -8,7 +8,7 @@
 				id="search"
 				name="search"
 				:value="searchValue"
-				@input="event => $emit('update:searchValue', event.target.value)"
+				@input="emitSearchUpdate"
 				placeholder="Search for a Country..."
 				size="30">
 		</i>
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { debounce } from 'lodash-es';
 export default {
 	name: 'searchFilter',
 	components: {
@@ -25,7 +26,10 @@ export default {
 		setCursorInput() {
 			this.$refs['input'].focus();
 			this.$refs['input'].select();
-		}
+		},
+		emitSearchUpdate: debounce(function(event) {
+			this.$emit('update:searchValue', event.target.value)
+		}, 1000)
 	}
 };
 </script>
