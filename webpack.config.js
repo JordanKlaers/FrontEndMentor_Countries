@@ -76,7 +76,7 @@ module.exports = {
 			}
 		]
 	},
-	mode: "development",
+	mode: "production",
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: 'Output Management',
@@ -90,6 +90,6 @@ module.exports = {
 	output: {
 		filename: '[name].bundle.js',
 		path: path.resolve(__dirname, 'dist/'),
-		publicPath: 'http://localhost:9000/'
+		publicPath: './'
 	}
 };
