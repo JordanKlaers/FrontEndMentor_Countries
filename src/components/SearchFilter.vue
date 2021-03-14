@@ -41,7 +41,7 @@ export default {
 		display: flex;
 		border-radius: 7px;
 		transition: 1s;
-		background-color: var(--active-element-color);
+		background-color: var(--active-element-bg-color);
 		color: var(--active-text-color);
 		@include box-shadow-with-hover(('color-hover': rgba(0,0,0,0.2))...);
 	}
@@ -52,7 +52,7 @@ export default {
 		text-overflow: ellipsis;
 		transition: 1s;
 		color: var(--active-text-color);
-		background-color: var(--active-element-color);
+		background-color: var(--active-element-bg-color);
 		&:focus{
 			outline: none;
 		}

@@ -11,64 +11,59 @@
 
 <script>
 import { debounce } from 'lodash-es';
+import cssVariables from '_mixins_/cssVariables';
 export default {
-	name: 'banner',
-	computed: {
-		hasCSSVariables() {
-			return this['--DarkModeElements'] || this['--DarkModeBackground'] || this['--DarkModeText'] || this['--DarkModeElements'] || this['--LightModeText'] || this['--LightModeInput'] || this['--LightModeBackground'] || this['--LightModeElements'];
-		}
-	},
-	props: {},
+	name: 'bann1er',
+	mixins: [ cssVariables ],
 	data() {
-		
 		return {
 			clickHandler: debounce(this.toggleMode, 300, { 'leading': true, 'trailing': false }),
-			isLight: true,
-			'--DarkModeElements': '',
-			'--DarkModeBackground': '',
-			'--DarkModeText': '',
-			'--DarkModeElements': '',
-			'--LightModeText': '',
-			'--LightModeInput': '',
-			'--LightModeBackground': '',
-			'--LightModeElements': ''
+			mode: 'light'
 		}
-	},
-	mounted() {
-		
 	},
 	methods: {
 		toggleMode() {
-			if (!this.hasCSSVariables) this.retrieveCSSVariables();
-
-			let styles = document.getElementById('app').style;
 			this.isLight = !this.isLight;
-			if (this.isLight) {
-				styles.setProperty('--active-element-color', this['--LightModeElements']);
-				styles.setProperty('--active-text-color', this['--LightModeText']);
-				styles.setProperty('--active-bg-color', this['--LightModeBackground']);
-				styles.setProperty('--inactive-bg-color', this['--DarkModeBackground']);
-				styles.setProperty('--inactive-text-color', this['--DarkModeText']);
-				styles.setProperty('--inactive-element-color', this['--DarkModeElements']);
+			let styles = document.getElementById('app').style;
+			if (this.mode == 'light') this.mode = 'dark';
+			else if (this.mode == 'dark') this.mode = 'light';
+			this.active.forEach(activeStyle => {
+				styles.setProperty(activeStyle, this[this.mode][activeStyle.replace('active', this.mode)]);
+			});
+			this.inactive.forEach(inactiveStyle => {
+				styles.setProperty(inactiveStyle, this[this.mode][inactiveStyle.replace('inactive', this.mode)]);
+			});
+			/*	styles.setProperty('--active-element-bg-color', this['--light-element-bg-color']);
+				styles.setProperty('--active-text-color', this['--light-text-color']);
+				styles.setProperty('--active-app-bg-color', this['--light-app-bg-color']);
+				styles.setProperty('--inactive-app-bg-color', this['--dark-app-bg-color']);
+				styles.setProperty('--inactive-text-color', this['--dark-text-color']);
+				styles.setProperty('--inactive-element-bg-color', this['--dark-element-bg-color']);
 			} else {
-				styles.setProperty('--active-element-color', this['--DarkModeElements']);
-				styles.setProperty('--active-text-color', this['--DarkModeText']);
-				styles.setProperty('--active-bg-color', this['--DarkModeBackground']);
-				styles.setProperty('--inactive-bg-color', this['--LightModeBackground']);
-				styles.setProperty('--inactive-text-color', this['--LightModeText']);
-				styles.setProperty('--inactive-element-color', this['--LightModeElements']);
+				styles.setProperty('--active-element-bg-color', this['--dark-element-bg-color']);
+				styles.setProperty('--active-text-color', this['--dark-text-color']);
+				styles.setProperty('--active-app-bg-color', this['--dark-app-bg-color']);
+				styles.setProperty('--inactive-app-bg-color', this['--light-app-bg-color']);
+				styles.setProperty('--inactive-text-color', this['--light-text-color']);
+				styles.setProperty('--inactive-element-bg-color', this['--light-element-bg-color']);
 			}
+			*/
 		},
 		retrieveCSSVariables() {
 			let rootVariables = getComputedStyle(document.body);
-			this['--DarkModeElements'] = rootVariables.getPropertyValue('--DarkModeElements'),
-			this['--DarkModeBackground'] = rootVariables.getPropertyValue('--DarkModeBackground'),
-			this['--DarkModeText'] = rootVariables.getPropertyValue('--DarkModeText'),
-			this['--DarkModeElements'] = rootVariables.getPropertyValue('--DarkModeElements'),
-			this['--LightModeText'] = rootVariables.getPropertyValue('--LightModeText'),
+			// console.log('rot variables: ', rootVariables);
+			this['--dark-element-bg-color'] = rootVariables.getPropertyValue('--dark-element-bg-color'),
+			this['--dark-app-bg-color'] = rootVariables.getPropertyValue('--dark-app-bg-color'),
+			this['--dark-text-color'] = rootVariables.getPropertyValue('--dark-text-color'),
+			this['--dark-element-bg-color'] = rootVariables.getPropertyValue('--dark-element-bg-color'),
+			this['--light-text-color'] = rootVariables.getPropertyValue('--light-text-color'),
 			this['--LightModeInput'] = rootVariables.getPropertyValue('--LightModeInput'),
-			this['--LightModeBackground'] = rootVariables.getPropertyValue('--LightModeBackground'),
-			this['--LightModeElements'] = rootVariables.getPropertyValue('--LightModeElements')
+			this['--light-app-bg-color'] = rootVariables.getPropertyValue('--light-app-bg-color'),
+			this['--light-element-bg-color'] = rootVariables.getPropertyValue('--light-element-bg-color')
+			this['--Dark-Neutral-1'] = rootVariables.getPropertyValue('--Dark-Neutral-1')
+			this['--Dark-Neutral-2'] = rootVariables.getPropertyValue('--Dark-Neutral-2')
+			this['--Light-Neutral-1'] = rootVariables.getPropertyValue('--Light-Neutral-1')
+			this['--Light-Neutral-2'] = rootVariables.getPropertyValue('--Light-Neutral-2')
 		}
 	},
 	watch: {}
@@ -81,7 +76,11 @@ export default {
 	display: flex;
 	transition: 1s;
 	color: var(--active-text-color);
-	background-color: var(--active-element-color);
+	background-color: var(--active-app-bg-color);
+	position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
 	span {
 		display: inline-block;
 		line-height: 20px;

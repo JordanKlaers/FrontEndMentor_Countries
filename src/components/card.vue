@@ -101,7 +101,7 @@ export default {
 @import '~_scss_/_mixins';
 
 .card {
-	background-color: var(--active-element-color);
+	background-color: var(--active-element-bg-color);
 	border-radius: 10px;
 	overflow: hidden;
 	box-shadow: rgba(0,0,0,0.1) 0px 4px 10px 8px;
@@ -138,7 +138,7 @@ export default {
 			position: absolute;
 			width: 20px;
 			height: 20px;
-			background-color: var(--inactive-bg-color);
+			background-color: var(--inactive-app-bg-color);
 			border-radius: 50%;
 			&:nth-of-type(1) {
 				@include bounce(-40px, bounceLeft);

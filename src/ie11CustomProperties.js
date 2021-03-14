@@ -7,7 +7,7 @@
 	if (testEl.style.getPropertyValue('--x') === 'y' || !testEl.msMatchesSelector) return;
 
 	if (!Element.prototype.matches) Element.prototype.matches = Element.prototype.msMatchesSelector;
-console.log('made it past??????');
+
     var listeners = [],
         root = document,
         Observer;
