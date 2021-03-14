@@ -53,14 +53,14 @@ export default {
 	@include box-shadow-with-hover(('color-hover': rgba(0,0,0,0.2))...);
 	&__tags {
 		transition: 1s;
-		background: var(--active-element-color);
+		background: var(--active-element-bg-color);
 		border-color: transparent;
 		border-radius: 7px;
 		.multiselect__tag {
 			//fallback for ie
 			background: hsl(209, 23%, 22%);
 			//
-			background: var(--inactive-element-color);
+			background: var(--inactive-element-bg-color);
 			span:first-of-type {
 				//fallback for IE
 				color: hsl(0, 0%, 100%);
@@ -79,7 +79,7 @@ export default {
 	}
 	&__tag {
 		overflow: visible;
-		background: var(--active-element-color);
+		background: var(--active-element-bg-color);
 	}
 	&__tag-icon {
 		transition: 0.5s;
@@ -102,7 +102,7 @@ export default {
 		margin-bottom: 8px;
 		margin-left: 10px;
 		padding: 0;
-		background-color: var(--active-element-color);
+		background-color: var(--active-element-bg-color);
 		color: var(--active-text-color);
 		&::placeholder {
 			color: #999;
@@ -115,7 +115,7 @@ export default {
 		margin-left: 10px;
 	}
 	&__content-wrapper {
-		border-color: var(--active-element-color);
+		border-color: var(--active-element-bg-color);
 		border-bottom-right-radius: 7px;
 		border-bottom-left-radius: 7px;
 	}
@@ -128,7 +128,7 @@ export default {
 		background: hsl(0, 0%, 98%);
 		//
 		color: var(--active-text-color);
-		background: var(--active-bg-color);
+		background: var(--active-app-bg-color);
 		padding: 8px;
 		min-height: 32px;
 		span:first-of-type {
@@ -138,7 +138,7 @@ export default {
 			//fallback for IE
 			background: hsl(207, 26%, 17%);
 			//
-			background: var(--inactive-bg-color);
+			background: var(--inactive-app-bg-color);
 			span:first-of-type {
 				//fallback for IE
 				color: hsl(0, 0%, 100%);

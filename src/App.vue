@@ -1,35 +1,18 @@
 <template>
 	<div id="app">
 		<banner></banner>
-		<search-filter :searchValue.sync="searchValue"></search-filter>
-		<region-filter :regions="regions" @updateRegionFilter="updateSelectedRegionFilters"></region-filter>
-		<div class="card-container ie-fallback m-30" ref='card-container'>
-			<card
-				:placeData="country"
-				v-for="(country, index) in filteredCountries"
-				:key="index">
-			</card>
-		</div>
-		
 	</div>
 </template>
 
 <script>
 import Card from './components/Card';
 import Banner from './components/Banner';
-import SearchFilter from './components/SearchFilter';
-import RegionFilter from './components/RegionFilter';
-import { mapGetters } from 'vuex';
-import { getCountriesAll } from '_store_/actions.js';
-import MainFilter from '_mixins_/MainFilter';
 import 'babel-polyfill';
 export default {
 	name: 'app',
 	components: {
 		Banner,
-		Card,
-		'search-filter': SearchFilter,
-		'region-filter': RegionFilter
+		Card
 	},
 	data() {
 		return {
@@ -38,12 +21,11 @@ export default {
 		}
 	},
 	mounted() {
-		this.$store.dispatch('getCountriesAll');
+		// this.$store.dispatch('getCountriesAll');
 		if (this.isInternetExplorer) {
 			this.$refs['card-container'].classList.add('ie-fallback');
 		}
-	},
-	mixins: [MainFilter]
+	}
 };
 </script>
 <style lang='scss' type='text/css'>

@@ -1,20 +1,25 @@
 body {
-	// --active-bg-color: red;
+	// --active-app-bg-color: red;
 	--section-container-width: 768px;
 	--background-color: white;
 	--app-height: 100%;
 	
-	--DarkModeElements: hsl(209, 23%, 22%);
-	--DarkModeBackground: hsl(207, 26%, 17%);
-	--DarkModeText: hsl(0, 0%, 100%);
-	--DarkModeBoxShadow: rgba(0,0,0,0.2);
+	--dark-element-bg-color: hsl(0, 83%, 65%);
+	--dark-app-bg-color: hsl(0, 0%, 10%);
+	--dark-text-color: hsl(0, 0%, 100%);
+	//--DarkModeBoxShadow: rgba(0,0,0,0.2);
 
+	--dark-neutral-1: hsl(0, 0%, 25%);
+	--dark-neutral-2: hsl(0, 0%, 35%);
 
-	--LightModeText: hsl(200, 15%, 8%);
-	--LightModeInput: hsl(0, 0%, 52%);
-	--LightModeBackground: hsl(0, 0%, 98%);
-	--LightModeElements: hsl(0, 0%, 100%);
-	--LightModeBoxShadow: rgba(0,0,0,0.2);
+	--light-neutral-1: hsl(0, 0%, 85%);
+	--light-neutral-2: hsl(0, 0%, 80%);
+
+	--light-text-color: hsl(200, 15%, 8%);
+	//--LightModeInput: hsl(0, 0%, 52%);
+	--light-app-bg-color: hsl(0, 0%, 98%);
+	--light-element-bg-color: hsl(0, 0%, 100%);
+	//--LightModeBoxShadow: rgba(0,0,0,0.2);
 
 
 	--text-large: 20px;
@@ -22,15 +27,18 @@ body {
 
 	#app {
 		//the page starts on light mode
-		--active-element-color: hsl(0, 0%, 100%);//var(--LightModeElements);
-		--active-text-color: hsl(200, 15%, 8%);//var(--LightModeText);
-		--active-bg-color: hsl(0, 0%, 98%);//var(--LightModeBackground);
+		--active-element-bg-color: var(--dark-element-bg-color);
+		--active-text-color: var(--dark-text-color);
+		--active-app-bg-color: var(--dark-app-bg-color);
 		--active-box-shadow-color: rgba(0,0,0,0.2);
-		--active-element-color: hsl(0, 0%, 100%);//var(--LightModeElements);
+		--active-element-bg-color: var(--dark-element-bg-color);
 
-		--inactive-text-color: hsl(0, 0%, 100%);//var(--DarkModeText);
-		--inactive-bg-color: hsl(207, 26%, 17%);//var(--DarkModeBackground);
-		--inactive-element-color: hsl(209, 23%, 22%);//var(--DarkModeElements);
+		--active-neutral-1: var(--dark-neutral-1);
+		--active-neutral-2: var(--dark-neutral-2);
+
+		--inactive-text-color: var(--light-text-color);
+		--inactive-app-bg-color: var(--light-app-bg-color);
+		--inactive-element-bg-color: var(--light-element-bg-color);
 	}
 }
 

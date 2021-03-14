@@ -15,7 +15,31 @@ body, html {
 #app {
 	position: relative;
 	transition: 1s;
-	background-color: var(--active-bg-color);
+	background-color: var(--active-app-bg-color);
 	min-height: 100vh;
-	border: 1px solid var(--active-bg-color);
+	border: 1px solid var(--active-app-bg-color);
+	&::before {
+		transition: 1s;
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 0;
+		width: 0;
+		border-color: var(--active-neutral-1) transparent transparent var(--active-neutral-1);
+		border-style: solid;
+		border-width: 30vmax 100vmax 0 0px;
+	}
+	&::after {
+		transition: 1s;
+		content: '';
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: 0;
+		width: 0;
+		border-color: var(--active-neutral-2) transparent transparent transparent;
+		border-style: solid;
+		border-width: 25vmax 0 0 91vmax;
+	}
 }
