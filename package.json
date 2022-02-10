@@ -43,7 +43,7 @@
 		"less": "^3.9.0",
 		"less-loader": "^4.1.0",
 		"lodash-es": "^4.17.11",
-		"node-sass": "^4.13.1",
+		"node-sass": "^7.0.0",
 		"regenerator": "^0.14.2",
 		"sass-loader": "^7.1.0",
 		"style-loader": "^0.23.0",
